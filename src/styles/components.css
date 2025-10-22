@@ -1,0 +1,47 @@
+.loading,
+.error {
+  font-weight: bold;
+  color: #1565c0;
+  text-align: center;
+  padding: 2rem;
+}
+.error {
+  color: red;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.6rem 1.2rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.loading,
+.error {
+  font-weight: bold;
+  text-align: center;
+  padding: 2rem;
+}
+
+.error {
+  color: #e53935;
+}
+
+.card,
+button {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

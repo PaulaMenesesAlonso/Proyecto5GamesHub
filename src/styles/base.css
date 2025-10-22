@@ -1,0 +1,60 @@
+:root {
+  --primary: #1565c0;
+  --primary-dark: #0d47a1;
+  --light: #e3f2fd;
+  --font: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  margin: 0;
+  color: #0d47a1;
+}
+
+header,
+footer {
+  text-align: center;
+  padding: 0.1rem;
+  background-color: #1565c0;
+  color: white;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-btn {
+  background: white;
+  color: #1565c0;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav-btn:hover {
+  background: #bbdefb;
+}
+
+.score-bar {
+  background: #e3f2fd;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  font-size: 0.9rem;
+}
