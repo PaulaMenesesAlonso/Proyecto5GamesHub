@@ -1,5 +1,6 @@
 import { generateCards } from './logic.js'
 import { updateScores, getScores } from '../../core/storage.js'
+import { renderScores } from '../../ui/ScoreBar.js'
 
 export default function init(root) {
   const section = document.createElement('section')
@@ -16,7 +17,7 @@ export default function init(root) {
 
   const resetBtn = document.createElement('button')
   resetBtn.textContent = '🔄 Reiniciar'
-  resetBtn.classList.add('reset-btn')
+  resetBtn.classList.add('btn')
   resetBtn.addEventListener('click', startGame)
 
   section.append(title, movesDisplay, timeDisplay, grid, resetBtn)
@@ -108,5 +109,7 @@ export default function init(root) {
       }
       return scores
     })
+    const scoreBar = document.querySelector('.score-bar')
+    if (scoreBar) scoreBar.innerHTML = renderScores()
   }
 }

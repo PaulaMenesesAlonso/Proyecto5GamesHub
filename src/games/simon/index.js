@@ -1,5 +1,6 @@
 import { randomColor, playSequence, playTone, colors } from './logic.js'
 import { updateScores, getScores } from '../../core/storage.js'
+import { renderScores } from '../../ui/ScoreBar.js'
 
 function playErrorSound() {
   playTone(150, 300)
@@ -19,7 +20,7 @@ export default function init(root) {
   const status = document.createElement('p')
   const startBtn = document.createElement('button')
   startBtn.textContent = '▶️ Empezar'
-  startBtn.classList.add('start-btn')
+  startBtn.classList.add('btn')
 
   section.append(title, status, grid, startBtn)
   root.appendChild(section)
@@ -35,6 +36,7 @@ export default function init(root) {
   let playerSequence = []
   let level = 0
   let listening = false
+  let isPlayingSequence = false
 
   startBtn.addEventListener('click', startGame)
 
@@ -51,16 +53,24 @@ export default function init(root) {
     status.textContent = `Nivel ${level} 🎯`
     playerSequence = []
     listening = false
+    isPlayingSequence = true
 
     sequence.push(randomColor())
 
     await playSequence(sequence)
 
+    isPlayingSequence = false
     listening = true
   }
 
   grid.addEventListener('click', (e) => {
-    if (!listening || !e.target.classList.contains('simon-btn')) return
+    if (
+      !listening ||
+      isPlayingSequence ||
+      !e.target.classList.contains('simon-btn')
+    )
+      return
+
     const color = e.target.dataset.color
     flashPlayer(e.target)
     playTone(color)
@@ -87,6 +97,7 @@ export default function init(root) {
 
   function gameOver() {
     listening = false
+    isPlayingSequence = false
     playErrorSound()
     status.textContent = `💥 Fallaste en el nivel ${level}`
     updateScores((scores) => {
@@ -95,5 +106,7 @@ export default function init(root) {
       }
       return scores
     })
+    const scoreBar = document.querySelector('.score-bar')
+    if (scoreBar) scoreBar.innerHTML = renderScores()
   }
 }

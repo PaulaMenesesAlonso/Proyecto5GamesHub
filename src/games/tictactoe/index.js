@@ -1,5 +1,6 @@
 import { checkWinner } from './logic.js'
 import { updateScores, getScores } from '../../core/storage.js'
+import { renderScores } from '../../ui/ScoreBar.js'
 
 export default function init(root) {
   let board = Array(9).fill(null)
@@ -28,7 +29,7 @@ export default function init(root) {
 
   const resetBtn = document.createElement('button')
   resetBtn.textContent = '🔄 Reiniciar'
-  resetBtn.classList.add('reset-btn')
+  resetBtn.classList.add('btn')
   resetBtn.addEventListener('click', reset)
 
   section.append(title, status, grid, resetBtn)
@@ -64,6 +65,8 @@ export default function init(root) {
       else scores.tictactoe.losses++
       return scores
     })
+    const scoreBar = document.querySelector('.score-bar')
+    if (scoreBar) scoreBar.innerHTML = renderScores()
   }
 
   function reset() {
